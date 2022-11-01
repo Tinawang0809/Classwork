@@ -26,11 +26,11 @@ int main(void)
         else if((t>=33&&t<=47)||(t>=58&&t<=64)||(t>=91&&t<=96)||(t>=123&&t<=127))
             symbol=1;
         if(upper==1&&lower==1&&number==1&&symbol==1){
-            printf("Your password is valid\n");
+            printf("Your password is valid! \n");
             return 0;
         }
     }
-    printf("Your password needs at least one uppercase letter, one lowercase letter, number and symbol!\n");
+    printf("Your password needs at least one uppercase letter, lowercase letter, number and symbol!\n");
     return 0;
 
 }
