@@ -1,0 +1,60 @@
+/*
+1. Ask the user for decimal number inputs
+2. Converting decimal number to binary, octal, and hexidecimal number then print
+*/
+
+#include <stdio.h>
+#include <cs50.h>
+
+
+//set up the variable for the function further
+// t for the target base (binary, octal, hexidecimal), and i is the decimal number
+int *conversion(int base, int deci){
+    static int dbase[101]={};
+    int t,i,j;
+    for(i=1;i<=101;i++)
+        dbase[i]=0;
+//When numbers are stored from the previous conversion to different calculation, the digit 0 allows the array to reset
+
+//Using a while loop to ensure that the code will run through all the decimal numbers until it is fully converted and reaches zero
+    while(deci>0){
+        t=1;
+        i=0;
+        j=0;
+        while(deci>=base*t){
+            t*=base;
+            i++;
+        }
+// t functions to store the number in the program, and i would record the digit of the number. the loop will find the largest exponent of the base
+
+        while(deci>=t){
+            deci-=t;
+            j++;
+        }
+//as t stores the number in the program, the while loop will substract t from the number and j records how many times it has been subtracted.
+
+        dbase[i]=j;
+// i is the digit and j is the number
+    }
+    return &dbase[i];
+}
+int main(){
+    int n,base,i;
+    int *a;
+    n=get_int("What is the decimal number? ");
+    base=get_int("What is the intended base? ");
+    a=conversion(base, n);
+    // a stands for the address of the array's first element
+
+    for(i=101;*(a+i)==0;i--);           //look for the element with number
+
+    for(int j=i;j>=0;j--){              //a for loop printing the number in reversed way
+
+        if(*(a+i)>=10)
+            printf("%c",*(a+i)+55);
+        else
+            printf("%d",*(a+i));
+    }
+    printf("\n");
+    return 0;
+}
