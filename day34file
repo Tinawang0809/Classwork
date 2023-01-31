@@ -1,0 +1,95 @@
+//malloc
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    // This pointer will hold the
+    // base address of the block created
+    int* ptr;
+    int n, i; //n to get # of elements, i is used in for loop
+
+    // Get the number of elements for the array
+    printf("Enter number of elements:");
+    scanf("%d",&n);
+    printf("Entered number of elements: %d\n", n);
+
+    // Dynamically allocate memory using malloc()
+    ptr = (int*)malloc(n * sizeof(int)); //n = # of blocks needed
+
+
+    // Check if the memory has been successfully
+    // allocated by malloc or not
+    if (ptr == NULL) //null = memory not allocatedd
+    {
+        printf("Memory not allocated.\n");
+        exit(0);
+    }
+    else
+    {
+
+        // Memory has been successfully allocated
+        printf("Memory successfully allocated using malloc.\n");
+
+        // Get the elements of the array
+        for (i = 0; i < n; ++i)
+        {
+            ptr[i] = i + 1; //pointer //0 + 1 block or memory
+
+        }
+
+        // Print the elements of the array
+        printf("The elements of the array are: ");
+        for (i = 0; i < n; ++i) //to update memory
+        {
+            printf("%d, ", ptr[i]); //print
+        }
+        printf("\n");
+    }
+
+    //2nd array
+    float* ptr1;
+    n += 2; //change size - add 2 more space for memory
+    // Dynamically allocate memory using calloc()
+    ptr1 = (float*)calloc(n , sizeof(float)); //float = different types
+
+
+    // Check if the memory has been successfully
+    if (ptr1 == NULL) //null = memory not allocatedd
+    {
+        printf("Memory not allocated.\n");
+        exit(0);
+    }
+    else
+    {
+
+        // Memory has been successfully allocated
+        printf("Memory successfully allocated using calloc.\n");
+
+        // Get the elements of the array
+        for (i = 0; i < n; ++i)
+        {
+            ptr1[i] = i + 1; //pointer //0 + 1 block or memory
+
+        }
+        printf("\n");
+
+    }
+
+    free(ptr); //free/release the memory to use more memory
+
+    n += 2;
+    ptr1 = realloc(ptr1, n * sizeof(float));
+        printf("The elements of the array are: "); // Print the elements of the array
+        for (i = 0; i < n; ++i) //to update memory
+        {
+            printf("%f, ", ptr1[i]); //print
+        }
+        printf("\n");
+
+    return 0; //end program
+}
