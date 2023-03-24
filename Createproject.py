@@ -10,6 +10,7 @@
 # #decypher the encrypted text
 # decrypted_text = cipher.decrypt(encrypted_text)
 # print(decrypted_text)
+import os, random, datetime
 
 class Persistent:
     file = "";
@@ -46,7 +47,7 @@ class Persistent:
 
 
 
-
+# main menu
 my_perststent = Persistent("db")
 while True:
     print("______________  My Password Assistant  ______________")
@@ -60,6 +61,38 @@ while True:
 
 
 
+
+# service menu
+    print("####################################")
+    print("#         Service Page             #")
+    print("#       1 Add Account              #")
+    print("#       2 Update Account           #")
+    print("#       3 Delete Account           #")
+    print("#       4 Display list             #")
+    print("#       5 Exit                     #")
+    print("########################################")
+    choice = input("Enter your choice ")
+        os.system('clear')
+    if '1' in choice:
+        print(" enter a random letter to start guessing the word! If the letter is within the word, it will show you !!!")
+        input(" Press return to go back to main menu" )
+        Menu()
+    elif '6' in choice:
+        print ("good Bye")
+        exit()
+    elif '2' in choice or '3' in choice or '4' in choice:
+        selectWord(choice)
+    elif '5' in choice:
+        print_scoreboard()
+        input(" Press return to go back to main menu" )
+        Menu()
+
+    else:
+        print("PLease enter a valid option")
+        Menu()
+    if cmd == 0 or cmd == '0':
+        print("Thanks for you use.")
+        exit()
     elif cmd == 1 or cmd == '1':
         account = input("Please enter your account that your need the password: ")
         #TODO get the password from file
@@ -75,3 +108,15 @@ while True:
         # check option create new or update ???
         my_perststent.updateAccount(account, password)
         my_perststent.createAccount(account, password)
+    elif cmd == 3 or cmd == '3':
+        account = input("Please enter your account that your need to delete password: ")
+        # TODO 1. Check whether current account exists in the file
+        # TODO 2. Delete the account with the password
+        my_perststent.deleteAccount(account)
+    elif cmd == 4 or cmd == '4':
+        pass
+        # TODO 1. print("List all accounts: ")
+        # TODO 2. print("Search all accounts: ")
+        my_perststent.listAccount()
+    else:
+        print("Your input is invalid, please choose the correct option !!!")
